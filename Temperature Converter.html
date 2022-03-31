@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Temperature Converter </title>
+        <style>
+            body{
+                background-color: white;
+            }
+            h1{
+                text-align: center;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 50px;
+            }
+            h3{
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            table,tr,td{
+                margin-left: auto;
+                margin-right: auto;
+                border: 2px solid black;
+                border-radius: 3px;
+                border-collapse: collapse;
+                height: 50px;
+                width: 35%;
+                padding-left: 10px;
+            }
+
+            .a{
+                text-align: center;
+                font-size: 25px;
+            }
+            
+            .main{
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .cn[type=text]{
+                text-align: center;
+                font-size: 20px;
+                border: 1px solid grey;
+                border-radius: 3px;
+                height: 50px;
+                width:50%;
+
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Temperature Converter</h1>
+        <h3>FORMULAE:</h3>
+        
+        <table>
+            <tr>
+                <td><b>Celsius to Farenheit: </b><br> ℉ = 9/5℃+32</td>
+                <td><b>Celsius to Kelvin: </b><br> K = °C + 273</th>
+            </tr>
+            <tr>
+                <td><b>Farenheit to Celsius: </b><br> ℃ = (℉-32)÷1.8</td>
+                <td><b>Farenheit to Kelvin: </b><br> K = ((℉-32)÷1.8) + 273.15</td>
+            </tr>
+            <tr>
+                <td><b>Kelvin to Farenheit: </b><br> ℉= 9/5(K-273.15)+32</td>
+                <td><b>Kelvin to Celsius: </b><br> °C = K-273.15</td>
+            </tr>
+
+        </table>
+
+        <div class="a">
+            <p><b>Type a value in any of the fields to convert between temperature measurements:</b></p>
+        </div>
+
+        <div class="main">
+            <div class="conversion">
+                <label>Fahrenheit: </label>
+                <input id="inputFahrenheit" class="cn" type="number" min="-459.66999999999996" placeholder="Fahrenheit" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+            </div>
+            <div class="conversion">
+                <label>Celsius: </label>
+                <input id="inputCelsius" class="cn" type="number" min="-273.15" placeholder="Celsius" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+            </div>
+            <div class="conversion">
+                <label>Kelvin: </label>
+                <input id="inputKelvin" class="cn" type="number" min="0" placeholder="Kelvin" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+            </div>
+        </div>
+
+        <script>
+            function temperatureConverter(source,valNum) {
+              valNum = parseFloat(valNum);
+              var inputFahrenheit = document.getElementById("inputFahrenheit");
+              var inputCelsius = document.getElementById("inputCelsius");
+              var inputKelvin = document.getElementById("inputKelvin");
+              if (source=="inputFahrenheit") {
+                inputCelsius.value=((valNum-32)/1.8).toFixed(2);
+                inputKelvin.value=(((valNum-32)/1.8)+273.15).toFixed(2);
+              }
+              if (source=="inputCelsius") {
+                inputFahrenheit.value=((valNum*1.8)+32).toFixed(2);
+                inputKelvin.value=((valNum)+273.15).toFixed(2);
+              }
+              if (source=="inputKelvin") {
+                inputFahrenheit.value=(((valNum-273.15)*1.8)+32).toFixed(2);
+                inputCelsius.value=((valNum)-273.15).toFixed(2);
+              }
+            }
+        </script>
+    </body>
+</html>
